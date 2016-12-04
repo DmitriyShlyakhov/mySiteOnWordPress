@@ -14,7 +14,7 @@ function theme_options_init(){
  * Load up the menu page
  */
 function theme_options_add_page() {
-	add_theme_page( __( 'Настройки нашей темы', 'sampletheme' ), __( 'Настройки нашей темы', 'sampletheme' ),
+	add_theme_page( __( 'Настройки мое темы', 'sampletheme' ), __( 'Настройки моей темы', 'sampletheme' ),
 		'edit_theme_options', 'theme_options', 'theme_options_do_page' );
 }
 
@@ -77,108 +77,41 @@ function theme_options_do_page() {
 			<?php $options = get_option( 'sample_theme_options' ); ?>
 
 			<table class="form-table">
-
-				<?php
-				/**
-				 * A sample checkbox option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'A checkbox', 'sampletheme' ); ?></th>
-					<td>
-						<input id="sample_theme_options[option1]" name="sample_theme_options[option1]" type="checkbox" value="1" <?php checked( '1', $options['option1'] ); ?> />
-						<label class="description" for="sample_theme_options[option1]"><?php _e( 'Sample checkbox', 'sampletheme' ); ?></label>
-					</td>
-				</tr>
-
-				<?php
-				/**
-				 * A sample text input option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'Телефон', 'sampletheme' ); ?></th>
-					<td>
-						<input id="sample_theme_options[phonetext]" class="regular-text" type="text" name="sample_theme_options[phonetext]" value="<?php esc_attr_e( $options['phonetext'] ); ?>" />
-					</td>
-				</tr>
-				<tr valign="top"><th scope="row"><?php _e( 'Адрес', 'sampletheme' ); ?></th>
-					<td>
-						<input id="sample_theme_options[addresstext]" class="regular-text" type="text" name="sample_theme_options[addresstext]" value="<?php esc_attr_e( $options['addresstext'] ); ?>" />
-					</td>
-				</tr>
-
-				<?php
-				/**
-				 * A sample select input option
-				 */
-				?>
 				<tr valign="top"><th scope="row"><?php _e( 'Выберите цветовую схему', 'sampletheme' ); ?></th>
 					<td>
 						<select name="sample_theme_options[selectinput]">
 							<?php
-								$selected = $options['selectinput'];
-								$p = '';
-								$r = '';
+							$selected = $options['selectinput'];
+							$p = '';
+							$r = '';
 
-								foreach ( $select_options as $option ) {
-									$label = $option['label'];
-									if ( $selected == $option['value'] ) // Make default first in list
+							foreach ( $select_options as $option ) {
+								$label = $option['label'];
+								if ( $selected == $option['value'] ) // Make default first in list
 
-										$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-									else
-										$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-								}
-								echo $p . $r;
+									$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+								else
+									$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+							}
+							echo $p . $r;
 							?>
 						</select>
 						<label class="description" for="sample_theme_options[selectinput]"></label>
 					</td>
 				</tr>
-
-				<?php
-				/**
-				 * A sample of radio buttons
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'Radio buttons', 'sampletheme' ); ?></th>
+				<tr valign="top"><th scope="row"><?php _e( 'Телефон:', 'sampletheme' ); ?></th>
 					<td>
-						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Radio buttons', 'sampletheme' ); ?></span></legend>
-						<?php
-							if ( ! isset( $checked ) )
-								$checked = '';
-							foreach ( $radio_options as $option ) {
-								$radio_setting = $options['radioinput'];
-
-								if ( '' != $radio_setting ) {
-									if ( $options['radioinput'] == $option['value'] ) {
-										$checked = "checked=\"checked\"";
-									} else {
-										$checked = '';
-									}
-								}
-								?>
-								<label class="description"><input type="radio" name="sample_theme_options[radioinput]" value="<?php esc_attr_e( $option['value'] ); ?>" <?php echo $checked; ?> /> <?php echo $option['label']; ?></label><br />
-								<?php
-							}
-						?>
-						</fieldset>
+						<input id="sample_theme_options[phonetext]" class="regular-text" type="text" name="sample_theme_options[phonetext]" value="<?php esc_attr_e( $options['phonetext'] ); ?>" />
 					</td>
 				</tr>
-
-				<?php
-				/**
-				 * A sample textarea option
-				 */
-				?>
-				<tr valign="top"><th scope="row"><?php _e( 'A textbox', 'sampletheme' ); ?></th>
+				<tr valign="top"><th scope="row"><?php _e( 'Адрес:', 'sampletheme' ); ?></th>
 					<td>
-						<textarea id="sample_theme_options[sometextarea]" class="large-text" cols="50" rows="10" name="sample_theme_options[sometextarea]"><?php echo esc_textarea( $options['sometextarea'] ); ?></textarea>
-						<label class="description" for="sample_theme_options[sometextarea]"><?php _e( 'Sample text box', 'sampletheme' ); ?></label>
+						<input id="sample_theme_options[addresstext]" class="regular-text" type="text" name="sample_theme_options[addresstext]" value="<?php esc_attr_e( $options['addresstext'] ); ?>" />
 					</td>
 				</tr>
 			</table>
-
 			<p class="submit">
-				<input type="submit" class="button-primary" value="<?php _e( 'Save Options', 'sampletheme' ); ?>" />
+				<input type="submit" class="button-primary" value="<?php _e( 'Сохранить изменения', 'sampletheme' ); ?>" />
 			</p>
 		</form>
 	</div>
